@@ -42,7 +42,7 @@ We just cleaned the Data Item column, but we still need to take care of Domain a
 Before we separate these two columns, we create a plot to see if there are any patterns for chemicals used in different states and we  also have a initial plot of sales for strawberries .
 ```{r message=F,warning=F,fig.width=9.3,echo=FALSE}
 ## Plot-Chemicals used in different states
-plot1.data<-strawb %>% 
+plot2.data<-strawb %>% 
     filter(
         str_detect(`Domain Category`,'(CHEMICAL|FERTILIZER)'),
         #State=='CALIFORNIA',
@@ -53,33 +53,28 @@ plot1.data<-strawb %>%
            Domain=ordered(Domain,c('CHEMICAL, HERBICIDE','CHEMICAL, INSECTICIDE','CHEMICAL, FUNGICIDE','CHEMICAL, OTHER','FERTILIZER')))
 
 
-ggplot(plot1.data,aes(x=State,y=Value,fill=Domain))+
+ggplot(plot2.data,aes(x=State,y=Value,fill=Domain))+
     geom_bar(stat='identity',width = 0.6,position= 'dodge')+
     theme_bw()+ 
     scale_y_continuous(trans='log10')+
     scale_fill_hue()+labs(title='CHEMICAL usage in different states')
 
-# plot1.data %>% group_by(State,Domain) %>% summarise(sum(as.numeric(Value)))
+# plot2.data %>% group_by(State,Domain) %>% summarise(sum(as.numeric(Value)))
 
 ## Plot-STRAWBERRIES - PRICE RECEIVED
-plot2.data<-strawb %>% 
+plot3.data<-strawb %>% 
     filter(Strawberries=='STRAWBERRIES - PRICE RECEIVED') %>%
     mutate(Value=as.numeric(Value),
            Year=as.character(Year))
 
 
-ggplot(plot2.data,aes(y=State,x=Year,size=Value,fill=State))+
+ggplot(plot3.data,aes(y=State,x=Year,size=Value,fill=State))+
     geom_point(shape=21)+
     theme_bw()+
     geom_text(aes(label=Value),size=4,nudge_y=0.2)+
     scale_size_continuous(range=c(2,16))+
     labs(size='PRICE RECEIVED',title='STRAWBERRIES - PRICE RECEIVED')
 ```
-In Figure 1 we can see that there are three states that use chemicals and fertilizers: California, Florida and Oregon. California uses more fertilizers and chemicals overall than the other two states.
-For California, the most used are fertilizer, followed by chemical-other, fungicide, pesticides and herbicides in that order
-Fertilizer and fungicides were the most used in Florida.
-
-In Figure 2 we can see information on strawberry price received in the five states from 2016-2021. New York and Florida have higher values in this category than other states.
 
 Now,looking at the `domain category` column, it may be better for further analysis if we separate the *strawb* dataset into three subsets: organic, non-organic -- and commercial vs chemicals in each
 * chemicals used in strawberry cultivation (pesticides, insecticides, fertilizers, fungicides, herbicides, and others)
@@ -573,7 +568,7 @@ df_Spinosad %>% group_by(State) %>% count()
 ```
 Based on the output above, California seems to be cautious about the chemicals 
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE}
 ## Edited by Tianjian Xie
 ## Part of plotting circular barplot
 
@@ -656,7 +651,7 @@ p <- ggplot(data, aes(x=as.factor(id), y=value, fill=group)) +       # Note that
   annotate("text", x = rep(max(data$id),4), y = c(20, 40, 60, 80), label = c("20", "40", "60", "80") , color="grey", size=1 , angle=0, fontface="bold", hjust=1) +
   
   geom_bar(aes(x=as.factor(id), y=value, fill=group), stat="identity", alpha=0.5) +
-  ylim(-100,120) +
+  ylim(-500,300) +
   theme_minimal() +
   theme(
     legend.position = "none",
@@ -669,8 +664,10 @@ p <- ggplot(data, aes(x=as.factor(id), y=value, fill=group)) +       # Note that
   geom_text(data=label_data, aes(x=id, y=value+10, label=individual, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=1.25, angle= label_data$angle, inherit.aes = FALSE ) +
   
   # Add base line information
-  geom_segment(data=base_data, aes(x = start, y = -5, xend = end, yend = -5), colour = "black", alpha=0.8, size=0.6 , inherit.aes = FALSE )  +
+  geom_segment(data=base_data, aes(x = start, y = -5, xend = end, yend = -5), colour = "black", alpha=0.8, size=0.06 , inherit.aes = FALSE )  +
   geom_text(data=base_data, aes(x = title, y = -18, label=group), hjust=c(1,1,0,0), colour = "black", alpha=0.8, size=2, fontface="bold", inherit.aes = FALSE)
+  
+p
 ```
 
 
