@@ -44,6 +44,21 @@ ggplot(plot2.data,aes(x=State,y=Value,fill=Domain))+
 
 plot2.data %>% group_by(State,Domain) %>% summarise(sum(as.numeric(Value)))
 
+## Plot-STRAWBERRIES - PRICE RECEIVED
+plot3.data<-strawb %>% 
+    filter(type=='STRAWBERRIES - PRICE RECEIVED') %>%
+    mutate(Value=as.numeric(Value),
+           Year=as.character(Year))
+
+
+
+ggplot(plot3.data,aes(y=State,x=Year,size=Value,fill=State))+
+    geom_point(shape=21)+
+    theme_bw()+
+    geom_text(aes(label=Value),size=4,nudge_y=0.2)+
+    scale_size_continuous(range=c(2,16))+
+    labs(size='PRICE RECEIVED',title='STRAWBERRIES - PRICE RECEIVED')
+
 
 ## seperate form into three subsets: oranic, non organic -- and commercial vs chemicals in each
 # 1. chemicals used in strawberry cultivation (pesticides, insecticides, fertilizers, fungicides, herbicides, and others)
