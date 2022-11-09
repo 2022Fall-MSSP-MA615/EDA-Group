@@ -40,7 +40,7 @@ strawb <- strawb %>% separate(col=`Data Item`,
 We just cleaned the Data Item column, but we still need to take care of Domain and Domain Category columns. 
 
 Before we separate these two columns, we create a plot to see if there are any patterns for chemicals used in different states and we  also have a initial plot of sales for strawberries .
-```{r echo=FALSE}
+```{r message=F,warning=F,fig.width=9.3,echo=FALSE}
 ## Plot-Chemicals used in different states
 plot2.data<-strawb %>% 
     filter(
