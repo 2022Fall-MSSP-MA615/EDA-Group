@@ -669,7 +669,7 @@ p <- ggplot(data, aes(x=as.factor(id), y=value, fill=group)) +       # Note that
   
 p
 ```
-
+This plot is a circular barplot for the LB/Year/App usage of different chemicals in California 2016, grouped by the four different types of chemicals: Fungicide, Herbicide, Insecticide, and the others. The output shows that CHLOROPICRIN is the most common used chemical in measurement of LB/Year/App, and the DICHLOROPROPENE is the second. This two chemicals were used far ahead other types of chemicals. However, CHLOROPICRIN is a very dangerous chemical. It was used as chemical weapons during WWI, and broadly used in agriculture nowadays. From CDC's report, CHLOROPICRIN used to cause toxication of 27 workers in a textile factory, and one death cases is reported. One year before the starting date of this dataset, California starts to limit the usage of this chemical. "In California experience with acute effects of chloropicrin when used as a soil fumigant for strawberries and other crops led to the release of regulations in January 2015 creating buffer zones and other precautions to minimize exposure of farm workers, neighbors, and passersby." ("Control Measures for Chloropicrin". California Department of Pesticide Regulation. January 6, 2015). CHILOROPICRIN is still the most common used chemical after the policy enacted.
 
 
 
