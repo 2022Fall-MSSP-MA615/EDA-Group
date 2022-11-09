@@ -42,7 +42,7 @@ We just cleaned the Data Item column, but we still need to take care of Domain a
 Before we separate these two columns, we create a plot to see if there are any patterns for chemicals used in different states and we  also have a initial plot of sales for strawberries .
 ```{r message=F,warning=F,fig.width=9.3,echo=FALSE}
 ## Plot-Chemicals used in different states
-plot2.data<-strawb %>% 
+plot1.data<-strawb %>% 
     filter(
         str_detect(`Domain Category`,'(CHEMICAL|FERTILIZER)'),
         #State=='CALIFORNIA',
@@ -53,28 +53,33 @@ plot2.data<-strawb %>%
            Domain=ordered(Domain,c('CHEMICAL, HERBICIDE','CHEMICAL, INSECTICIDE','CHEMICAL, FUNGICIDE','CHEMICAL, OTHER','FERTILIZER')))
 
 
-ggplot(plot2.data,aes(x=State,y=Value,fill=Domain))+
+ggplot(plot1.data,aes(x=State,y=Value,fill=Domain))+
     geom_bar(stat='identity',width = 0.6,position= 'dodge')+
     theme_bw()+ 
     scale_y_continuous(trans='log10')+
     scale_fill_hue()+labs(title='CHEMICAL usage in different states')
 
-# plot2.data %>% group_by(State,Domain) %>% summarise(sum(as.numeric(Value)))
+# plot1.data %>% group_by(State,Domain) %>% summarise(sum(as.numeric(Value)))
 
 ## Plot-STRAWBERRIES - PRICE RECEIVED
-plot3.data<-strawb %>% 
+plot2.data<-strawb %>% 
     filter(Strawberries=='STRAWBERRIES - PRICE RECEIVED') %>%
     mutate(Value=as.numeric(Value),
            Year=as.character(Year))
 
 
-ggplot(plot3.data,aes(y=State,x=Year,size=Value,fill=State))+
+ggplot(plot2.data,aes(y=State,x=Year,size=Value,fill=State))+
     geom_point(shape=21)+
     theme_bw()+
     geom_text(aes(label=Value),size=4,nudge_y=0.2)+
     scale_size_continuous(range=c(2,16))+
     labs(size='PRICE RECEIVED',title='STRAWBERRIES - PRICE RECEIVED')
 ```
+In Figure 1 we can see that there are three states that use chemicals and fertilizers: California, Florida and Oregon. California uses more fertilizers and chemicals overall than the other two states.
+For California, the most used are fertilizer, followed by chemical-other, fungicide, pesticides and herbicides in that order
+Fertilizer and fungicides were the most used in Florida.
+
+In Figure 2 we can see information on strawberry price received in the five states from 2016-2021. New York and Florida have higher values in this category than other states.
 
 Now,looking at the `domain category` column, it may be better for further analysis if we separate the *strawb* dataset into three subsets: organic, non-organic -- and commercial vs chemicals in each
 * chemicals used in strawberry cultivation (pesticides, insecticides, fertilizers, fungicides, herbicides, and others)
