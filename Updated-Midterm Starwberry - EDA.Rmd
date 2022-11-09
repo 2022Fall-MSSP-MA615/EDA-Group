@@ -569,7 +569,7 @@ df_Spinosad %>% group_by(State) %>% count()
 Based on the output above, California seems to be cautious about the chemicals 
 
 
-
+#Abolished pie plot and donut chart graphes
 ```{r echo=FALSE}
 Bife_used <- grep("BIFENTHRIN",
                   strawb_chem$chem_name,
@@ -601,6 +601,7 @@ ggplot(cldf_Bifenthrin_used, aes(ymax=ymax, ymin=ymin, xmax=7, xmin=6, fill=comb
 ```
 These two graphes show the percentage of usage of Bifenthrin grouped by Year and State. Bifenthrin is a dangerous varity of chemicals widely used in agriculture. It has been banned for agricultural use in European union countries since July 2019, but it is not a restricted chemical in the United States and is commonly sold in hardware stores. I planned to use these graphes to show the usage of Bifenthrin in California and Florida by years and made a comparison by percentage, but it didn't worked well. So we don't want to put these graphes in our report.
 
+# Circular barplot
 ```{r echo=FALSE, warning=FALSE}
 ## Edited by Tianjian Xie
 ## Part of plotting circular barplot
