@@ -24,6 +24,27 @@ strawb %>% separate(col=`Data Item`,
                     sep = ",",
                     fill = "right")
 
+## Plot-Chemicals used in different states
+plot2.data<-strawb %>% 
+    filter(
+        str_detect(`Domain Category`,'(CHEMICAL|FERTILIZER)'),
+        #State=='CALIFORNIA',
+        str_detect(Value,'^\\d+$')) %>%
+    filter(Value != "(NA)" & Value != "(D)" ) %>%
+    mutate(Value=as.numeric(Value),
+           State= as.character(State),
+           Domain=ordered(Domain,c('CHEMICAL, HERBICIDE','CHEMICAL, INSECTICIDE','CHEMICAL, FUNGICIDE','CHEMICAL, OTHER','FERTILIZER')))
+
+
+ggplot(plot2.data,aes(x=State,y=Value,fill=Domain))+
+    geom_bar(stat='identity',width = 0.6,position= 'dodge')+
+    theme_bw()+ 
+    scale_y_continuous(trans='log10')+
+    scale_fill_hue()+labs(title='CHEMICAL usage in different states')
+
+plot2.data %>% group_by(State,Domain) %>% summarise(sum(as.numeric(Value)))
+
+
 ## seperate form into three subsets: oranic, non organic -- and commercial vs chemicals in each
 # 1. chemicals used in strawberry cultivation (pesticides, insecticides, fertilizers, fungicides, herbicides, and others)
 # 2. sales of organic strawberries
