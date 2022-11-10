@@ -393,7 +393,7 @@ ggplot(e1m) +
 
 
 ```
-To have a better sense of whethe the sales increase or decrease, we change the plot type into lines instead of points.
+To have a better sense of whethe the sales increase or decrease, we change the plot type into line instead of point.
 ```{r echo=FALSE}
 ggplot(e1m) +
   aes(x = Year, y = Value, colour = State) +
@@ -427,7 +427,7 @@ ggplot(e1w) +
   theme_minimal() +
   facet_wrap(vars(State), scales = "free_y")
 ```
-We find there is a discrepancy for sales in California using different measurements. Without full information of the quantities and prices and why some values of coefficient variation are missing, We cannot infer anything about why this discrepancy would appear. We believe that if the conversion between CWT and sales can be added into data preparation, we will be able to discover more convicing results about how sales change between different states during 2016-2019.
+We find there is a discrepancy for sales in California using different measurements. Without full information of the quantities and prices and why some values of coefficient variation are missing, We cannot infer anything about why this discrepancy would appear. We believe that if the conversion between CWT and sales can be added into data preparation, we will be able to discover more convicing results about how sales change between different states during 2016 - 2019.
 
 ## non_organic:
 ```{r echo=FALSE}
@@ -453,10 +453,6 @@ unique(strawb_non_organic_fertilizers$name) #4
 # e3 <- strawb_non_organic_fertilizers[strawb_non_organic_fertilizers$items==" LB", ]
 # e3 <- strawb_non_organic_fertilizers[strawb_non_organic_fertilizers$items==" LB / ACRE / APPLICATION", ]
 e3 <- strawb_non_organic_fertilizers[strawb_non_organic_fertilizers$items==" LB / ACRE / YEAR", ]
-#plot items any type plot a picture 
-#third
-#dark and light
-
 ```
 
 ## chemical
@@ -562,7 +558,7 @@ df_Spinosad %>% group_by(State) %>% count()
 Based on the output above, California seems to be cautious about the chemicals relatively as the vast majority of the fresh strawberries sold in this country are grown there. But because of the limited information we have, we cannot conclude California has the best practice to protect 
 public health. 
 
-#Abolished pie plot and donut chart graphes
+### Abolished pie plot and donut chart graphes
 ```{r echo=FALSE}
 Bife_used <- grep("BIFENTHRIN",
                   strawb_chem$chem_name,
@@ -592,7 +588,7 @@ ggplot(cldf_Bifenthrin_used, aes(ymax=ymax, ymin=ymin, xmax=7, xmin=6, fill=comb
   theme_void() +
   theme(legend.position = "none")
 ```
-These two graphes show the percentage of usage of Bifenthrin grouped by Year and State. Bifenthrin is a dangerous varity of chemicals widely used in agriculture. It has been banned for agricultural use in European union countries since July 2019, but it is not a restricted chemical in the United States and is commonly sold in hardware stores. I planned to use these graphes to show the usage of Bifenthrin in California and Florida by years and made a comparison by percentage, but it didn't worked well. So we don't want to put these graphes in our report.
+These two graphes show the percentage of usage of Bifenthrin grouped by Year and State. Bifenthrin is a dangerous varity of chemicals widely used in agriculture. It has been banned for agricultural use in European union countries since July 2019, but it is not a restricted chemical in the United States and is commonly sold in hardware stores. I planned to use these graphes to show the usage of Bifenthrin in California and Florida by years and made a comparison by percentage, but it didn't worked well. So we don't want to rely on these graphs for producing any further analysis.
 
 ### Circular barplot
 ```{r echo=FALSE, warning=FALSE}
