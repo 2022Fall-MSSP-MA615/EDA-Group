@@ -498,7 +498,7 @@ e4 %>%
 length(unique(e4$name)) #168
 ```
 
-
+### Hazardous chemicals and safe ones 
 We try to find how many hazardous chemicals mentioned in the "Shoppers Guide to Pesticides in Produce" exists in our dataset. Hazardous chemicals include Carbendazim, Bifenthrin, methyl bromide, 1,3-dichloropropene, chloropicrin, Telone.
 
 ```{r}
@@ -546,7 +546,7 @@ e5 %>%
   facet_wrap(~detail, ncol = 2, scales = "free") +
   labs(x = "count", y = NULL)
 ```
-Based on our research, safe and natural chemicals to use include Neem Oil and Spinosad. Check if they are in our chemical dataset. 
+Based on our research, safe and natural chemicals to use include Neem Oil and Spinosad. We run a quick check if they are in our chemical dataset. 
 
 ```{r}
 # Neem Oil: 27 matches
@@ -559,8 +559,8 @@ spinosad_rows<- grep("SPINOSAD", strawb_chem$chem_name, ignore.case=TRUE)
 df_Spinosad <- strawb_chem%>% slice(spinosad_rows)
 df_Spinosad %>% group_by(State) %>% count()
 ```
-Based on the output above, California seems to be cautious about the chemicals 
-
+Based on the output above, California seems to be cautious about the chemicals relatively as the vast majority of the fresh strawberries sold in this country are grown there. But because of the limited information we have, we cannot conclude California has the best practice to protect 
+public health. 
 
 #Abolished pie plot and donut chart graphes
 ```{r echo=FALSE}
@@ -594,9 +594,8 @@ ggplot(cldf_Bifenthrin_used, aes(ymax=ymax, ymin=ymin, xmax=7, xmin=6, fill=comb
 ```
 These two graphes show the percentage of usage of Bifenthrin grouped by Year and State. Bifenthrin is a dangerous varity of chemicals widely used in agriculture. It has been banned for agricultural use in European union countries since July 2019, but it is not a restricted chemical in the United States and is commonly sold in hardware stores. I planned to use these graphes to show the usage of Bifenthrin in California and Florida by years and made a comparison by percentage, but it didn't worked well. So we don't want to put these graphes in our report.
 
-# Circular barplot
+### Circular barplot
 ```{r echo=FALSE, warning=FALSE}
-## Edited by Tianjian Xie
 ## Part of plotting circular barplot
 
 ## Dataset
