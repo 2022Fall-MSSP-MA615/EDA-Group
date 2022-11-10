@@ -39,7 +39,7 @@ strawb <- strawb %>% separate(col=`Data Item`,
 ```
 We just cleaned the Data Item column, but we still need to take care of Domain and Domain Category columns. 
 
-Before we separate these two columns, we create a plot to see if there are any patterns for chemicals used in different states and we  also have a initial plot of sales for strawberries .
+Before we separate these two columns, we create a plot to see if there are any patterns for chemicals used in different states and we also have a initial plot of sales for strawberries .
 ```{r message=F,warning=F,fig.width=9.3,echo=FALSE}
 ## Plot-Chemicals used in different states
 plot2.data<-strawb %>% 
@@ -76,12 +76,12 @@ ggplot(plot3.data,aes(y=State,x=Year,size=Value,fill=State))+
     labs(size='PRICE RECEIVED',title='STRAWBERRIES - PRICE RECEIVED')
 ```
 
-Now,looking at the `domain category` column, it may be better for further analysis if we separate the *strawb* dataset into three subsets: organic, non-organic -- and commercial vs chemicals in each
-* chemicals used in strawberry cultivation (pesticides, insecticides, fertilizers, fungicides, herbicides, and others)
-* sales of organic strawberries
-* sales of non-organic strawberries
+Now,looking at the `domain category` column, it may be better for further analysis if we separate the *strawb* dataset into three subsets: organic, non-organic -- and commercial vs chemicals in each.
+*chemicals used in strawberry cultivation* (pesticides, insecticides, fertilizers, fungicides, herbicides, and others)
+*sales of organic strawberries*
+*sales of non-organic strawberries*
 
-We starts with filtering all the organic entries from the whole dataset to create organic and non-organic subsets.Next, we continue to separate the chemical data from non-organic data because they have more elaborate information of chemicals than that of organic data. Finally, we got all rows of chemical data for creating the chemicals subset.
+We starts with filtering all the organic entries from the whole dataset to create organic and non-organic subsets. Next, we continue to separate the chemical data from non-organic data because they have more elaborate information of chemicals than that of organic data. Finally, we got all rows of chemical data for creating the chemicals subset.
 ```{r}
 # Find all organic entries
 
@@ -347,10 +347,10 @@ strawb_non_organic_fertilizers <- setdiff(strawb_non_organic_y, strawb_non_organ
 ```
 
 Now, we have all datasets tidied: 
-+ strawb_organic
-+ strawb_non_organic_my
-+ strawb_non_organic_chemical
-+ strawb_non_organic_fertilizers
+*strawb_organic*
+*strawb_non_organic_my*
+*strawb_non_organic_chemical*
+*strawb_non_organic_fertilizers*
 
 
 # Exploratory Data Analysis
